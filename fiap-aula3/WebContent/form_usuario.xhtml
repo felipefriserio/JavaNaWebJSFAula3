@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<f:view>
+		<h:form>
+			<p:panelGrid columns="2" id="pnGrid">
+				<h:outputLabel value="Nome" for="txtNome" />
+				<p:inputText id="txtNome" value="#{loginBean.nome}" required="true" requiredMessage="Campo nome obrigatório"/>
+
+				<h:outputLabel value="Senha" for="txtSenha" />
+				<p:password id="txtSenha" value="#{loginBean.senha}" />
+
+				<!-- 
+					action envia a pagina inteira para ser processada pelo lado do servidor
+					actionListener funciona como um AJAX, voce consegue atualizar somente um pedaco da tela 
+					update: informa qual componente voce gostaria de atualizar
+				-->
+				<p:commandButton actionListener="#{loginBean.submit}" value="Salvar" update="pnGrid testeLabel"/>
+				<p:messages />
+			</p:panelGrid>
+			
+			<p>Status do cadastro: 
+			<p:outputLabel value="#{loginBean.nome}" id="testeLabel"/></p>
+		</h:form>
+	</f:view>
+</h:body>
+</html>
